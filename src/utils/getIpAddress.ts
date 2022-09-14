@@ -1,6 +1,6 @@
 import os from 'os';
 
-export const getIpAddress = (): any => {
+export const getIpAddress = (): string => {
   const networkInterfaces = os.networkInterfaces();
   let ip = '';
 
