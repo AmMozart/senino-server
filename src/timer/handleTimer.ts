@@ -4,7 +4,7 @@ import Transceiver from '../transceiver/Transceiver';
 import { SendData } from '../transceiver/SendData';
 import { loadDMX } from '../config/LoadDMX';
 import { store } from '../store/store';
-import { getWeekDayNameFromNumber } from './utils';
+import { getWeekDayNameFromNumber } from '../utils/getWeekDayNameFromNumber';
 import { Time, WeekDay } from './Timer';
 
 const sender = new Transceiver(new ProtocolDMX());

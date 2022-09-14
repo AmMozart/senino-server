@@ -1,8 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store/store';
-import { readFromFlash, updateTimers, saveOnFlash } from './utils';
+import { readFromFlash } from '../utils/readFromFlash';
 import { Timer } from './Timer';
+import { updateTimers } from '../utils/updateTimers';
+import { saveOnFlash } from '../utils/saveOnFlash';
 
 const initialState: Timer[] = readFromFlash();
 

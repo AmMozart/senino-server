@@ -4,7 +4,7 @@ import fs from 'fs';
 import { join } from 'path';
 
 import { PORT } from '../config/webServerConfig';
-import { getIpAddress } from './utils';
+import { getIpAddress } from '../utils/getIpAddress';
 
 const privateKey = fs.readFileSync(join(__dirname, '../asset/certificates/server.key'), 'utf8');
 const certificate = fs.readFileSync(join(__dirname, '../asset/certificates/server.crt'), 'utf8');
