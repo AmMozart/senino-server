@@ -1,14 +1,12 @@
-import { writeFileSync } from 'fs';
-
-import clockOneMinuteInterval from '../timer/ClockOneMinuteInterval';
-import { Timer } from '../timer/Timer';
 import { handleTimer } from '../timer/handleTimer';
+import { Timer } from '../timer/Timer';
+import Clock from '../timer/Clock';
 
-export function updateTimers(timers: Timer[]) {
-  clockOneMinuteInterval.clearAllTimer();
-  
+export function updateTimers(clock: Clock, timers: Timer[]) {
+  clock.clearAllTimer();
+
   timers.forEach(timer => {
-    clockOneMinuteInterval.setTimer(() => {
+    clock.setTimer(() => {
       handleTimer(timer.weekDays, timer.time, timer.electricGroupName, timer.mode);
     });
   });
