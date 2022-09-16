@@ -9,6 +9,10 @@ class Clock {
     }, msInterval);
   }
 
+  public getTimers(): Timer[] {
+    return this.timers;
+  }
+
   public setTimer(timer: Timer) {
     this.timers.push(timer);
   }
