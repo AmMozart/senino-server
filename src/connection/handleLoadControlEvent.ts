@@ -11,11 +11,17 @@ export const handleLoadControlEvent = (payload: unknown): void => {
     const electricGroupState: LoadDMX = payload as LoadDMX;
     const entries: [string, number][] = Object.entries(electricGroupState);
 
-    const channel = loadDMX[entries[0][0]];
-    const level = entries[0][1];
+    const [groupName, level] = entries[0];
+    const channel = loadDMX[groupName];
   
     senderDMX.send( {channel, level} );
-
     store.dispatch(changeElectricGroupState(electricGroupState));
+
+    if(groupName === 'Vorota') {
+      setTimeout(() => {
+        senderDMX.send( {channel, level: 0} );
+        store.dispatch(changeElectricGroupState({'Vorota':  0}));
+      }, 200);
+    }
   }
 };

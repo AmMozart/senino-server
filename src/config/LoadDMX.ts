@@ -11,7 +11,7 @@ export const loadDMX: LoadDMX = {
   '1-06L' :  6,
   '1-07L' :  7,
   '1-08L' :  8,
-  'r' : 9,
+  'Vorota' : 9,
   'VV-1' :  10,
   'Septik' : 11,
   'Boiler' : 12
