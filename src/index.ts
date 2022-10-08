@@ -1,4 +1,4 @@
 import './connection/servers';
-import { log } from './logger/logger';
+import { log, TypeLogger } from './logger/logger';
 
-log.warn('Start System.');
+log(TypeLogger.Warn, 'Start System.');

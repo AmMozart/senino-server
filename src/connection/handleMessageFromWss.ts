@@ -4,6 +4,7 @@ import { handleLoadControlEvent } from './handleLoadControlEvent';
 import { handleSetTimersEvent } from './handleSetTimersEvent';
 import { handleGetStateEvent } from './handleGetStateEvent';
 import WssEvent from './WssEvent';
+import { handleClearLogEvent } from './handleClearLogEvent';
 
 interface ReceiveData {
   command: WssEvent;
@@ -35,6 +36,10 @@ export const handleMessageFromWss = (wss: webSocket.WebSocket, message: webSocke
   }
   case WssEvent.SetTimers: {
     handleSetTimersEvent(payload);
+    break;
+  }
+  case WssEvent.ClearLog: {
+    handleClearLogEvent();
     break;
   }
   default: {

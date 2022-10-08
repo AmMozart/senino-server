@@ -1,12 +1,11 @@
 import { Middleware } from '@reduxjs/toolkit';
-import { log } from './logger';
+import { log, TypeLogger } from './logger';
 
-const loggerMiddleware: Middleware = 
-  store => next => action => {
-    if(action.type === 'electricGroup/changeElectricGroupState') {
-      log.info(action.payload);
-    }
-    return next(action);
-  };
+const loggerMiddleware: Middleware = () => next => action => {
+  if(action.type === 'electricGroup/changeElectricGroupState') {
+    log(TypeLogger.Info, action.payload);
+  }
+  return next(action);
+};
 
 export { loggerMiddleware };
