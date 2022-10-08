@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import electricGroupReducer from '../electricGroup/electricGroupSlice';
 import { wssServer } from '../connection/servers';
 import timerReducer from '../timer/sliceTimer';
+import { loggerMiddleware } from '../logger/loggerMiddleware';
 
 export const store = configureStore(
   {
@@ -11,8 +12,8 @@ export const store = configureStore(
       electricGroup: electricGroupReducer,
       timers: timerReducer
     },
-    // middleware: (getDefaultMiddleware) =>
-    //   getDefaultMiddleware().concat(logger),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(loggerMiddleware),
   });
 
 store.subscribe(() => {
