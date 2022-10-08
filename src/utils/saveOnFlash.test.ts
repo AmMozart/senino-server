@@ -5,7 +5,7 @@ import { saveOnFlash } from './saveOnFlash';
 describe('saveOnFlash module: ', () => {
   let timers: Timer[] = [];
   const testFileName = 'testFileName';
-  const defaultFileName = 'timers';
+  const defaultFileName = '/timers';
 
   beforeEach(() => {
     timers = [
