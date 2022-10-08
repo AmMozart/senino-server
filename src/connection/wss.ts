@@ -20,6 +20,7 @@ const startWss = (server: https.Server): expressWs.Instance => {
 
   appWs.ws('/api/stream', proxy({ 
     url: 'rtsp://192.168.1.211/user=admin_password=Google_360_channel=1_stream=0.sdp',
+    transport: 'tcp'
   }));
 
   return wsServer;
