@@ -7,7 +7,7 @@ import { updateTimers } from '../utils/updateTimers';
 import { saveOnFlash } from '../utils/saveOnFlash';
 import ClockOneMinuteInterval from './ClockOneMinuteInterval';
 
-const initialState: Timer[] = readFromFlash();
+const initialState: Timer[] = [];
 
 const sliceTimer = createSlice({
   name: 'Timer',
@@ -21,6 +21,8 @@ const sliceTimer = createSlice({
     }
   }
 });
+
+updateTimers(ClockOneMinuteInterval, readFromFlash());
 
 export const timers = (state: RootState) => state.timers;
 export const { setTimers } = sliceTimer.actions;
