@@ -5,7 +5,7 @@ import { SendData } from '../transceiver/SendData';
 import { loadDMX } from '../config/LoadDMX';
 import { store } from '../store/store';
 import { getWeekDayNameFromNumber } from '../utils/getWeekDayNameFromNumber';
-import { Time, WeekDay } from './Timer';
+import { Time, WeekDay } from './TimerData';
 
 const sender = new Transceiver(new ProtocolDMX());
 type Power = 'ON' | 'OFF';

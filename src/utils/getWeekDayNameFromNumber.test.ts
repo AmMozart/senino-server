@@ -1,4 +1,4 @@
-import { WeekDay } from '../timer/Timer';
+import { WeekDay } from '../timer/TimerData';
 import { getWeekDayNameFromNumber } from './getWeekDayNameFromNumber';
 
 describe('getWeekDayNameFromNumber module:', () => {

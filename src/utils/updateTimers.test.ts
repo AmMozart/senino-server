@@ -1,11 +1,11 @@
 import Clock from '../timer/Clock';
-import { Timer, TimerMode, WeekDay } from '../timer/Timer';
+import { TimerData, TimerMode, WeekDay } from '../timer/TimerData';
 import { updateTimers } from './updateTimers';
 
 describe('updateTimers module:', () => {
   let clock: Clock;
 
-  const timers: Timer[] = [{
+  const timers: TimerData[] = [{
     id: 42,
     mode: TimerMode.Off,
     weekDays: [WeekDay.Monday],

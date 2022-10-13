@@ -1,8 +1,8 @@
 import {  writeFileSync } from 'fs';
 
-import { Timer } from '../timer/Timer';
+import { TimerData } from '../timer/TimerData';
 
-export function saveOnFlash(timers: Timer[], fileName = '/timers'): void {
+export function saveOnFlash(timers: TimerData[], fileName = '/timers'): void {
   try {
     writeFileSync(fileName, JSON.stringify(timers));
   }

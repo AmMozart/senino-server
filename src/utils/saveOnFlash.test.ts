@@ -1,9 +1,9 @@
 import { readFileSync, rmSync } from 'fs';
-import { Timer, TimerMode, WeekDay } from '../timer/Timer';
+import { TimerData, TimerMode, WeekDay } from '../timer/TimerData';
 import { saveOnFlash } from './saveOnFlash';
 
 describe('saveOnFlash module: ', () => {
-  let timers: Timer[] = [];
+  let timers: TimerData[] = [];
   const testFileName = 'testFileName';
   const defaultFileName = '/timers';
 

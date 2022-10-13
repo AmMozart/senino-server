@@ -1,10 +1,10 @@
 import { readFileSync } from 'fs';
 
-import { Timer } from '../timer/Timer';
+import { TimerData } from '../timer/TimerData';
 
-export function readFromFlash(fileName = '/timers'): Timer[] {
+export function readFromFlash(fileName = '/timers'): TimerData[] {
   let read;
-  let timers: Timer[] = [];
+  let timers: TimerData[] = [];
 
   try {
     read = readFileSync(fileName, 'utf-8');

@@ -1,4 +1,4 @@
-import { WeekDay } from '../timer/Timer';
+import { WeekDay } from '../timer/TimerData';
 
 export const getWeekDayNameFromNumber = (dayNumber: number): WeekDay => {
   switch(dayNumber) {

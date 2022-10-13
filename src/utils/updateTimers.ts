@@ -1,8 +1,8 @@
 import { handleTimer } from '../timer/handleTimer';
-import { Timer } from '../timer/Timer';
+import { TimerData } from '../timer/TimerData';
 import Clock from '../timer/Clock';
 
-export function updateTimers(clock: Clock, timers: Timer[]) {
+export function updateTimers(clock: Clock, timers: TimerData[]) {
   clock.clearAllTimer();
 
   timers.forEach(timer => {

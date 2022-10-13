@@ -18,7 +18,7 @@ export enum WeekDay {
   Sunday = 'Вс',
 }
 
-export interface Timer {
+export interface TimerData {
   id: number;
   electricGroupName: string;
   mode: TimerMode;

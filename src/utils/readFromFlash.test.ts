@@ -1,12 +1,12 @@
 import { rmSync, writeFileSync, } from 'fs';
 
 import { readFromFlash } from './readFromFlash';
-import { Timer } from '../timer/Timer';
+import { TimerData } from '../timer/TimerData';
 
 describe('readFromFlash module:', () => {
   // eslint-disable-next-line quotes
   const stubTimerJSON = `[{"id":0,"electricGroupName":"Boiler","mode":"ON","time":{"hour":5,"minute":19},"weekDays":["Чт"]}]`;
-  const result: Timer[] = JSON.parse(stubTimerJSON);
+  const result: TimerData[] = JSON.parse(stubTimerJSON);
 
   it(`read JSON data: ${stubTimerJSON}) should be return: ${JSON.stringify(result)}`, () => {
     const fileName = 'testTimerFile';
