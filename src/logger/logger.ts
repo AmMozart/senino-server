@@ -1,11 +1,15 @@
-import Logger from 'logger';
+import winston from 'winston';
 import { store } from '../store/store';
 import { clearLogFile } from '../utils/clearLogFile';
 import { addLog } from './sliceLogger'; 
 import { clearLog } from '../logger/sliceLogger';
+import { checkNever } from '../utils/checkNever';
 
 const pathLogFile = '/logfile';
-const logger = Logger.createLogger(pathLogFile);
+
+const logger = winston.createLogger({
+  transports: [ new winston.transports.File({ filename: pathLogFile }) ]
+});
 
 enum TypeLogger {
   Info = 'Info',
@@ -14,13 +18,18 @@ enum TypeLogger {
 }
 
 const log = (type: TypeLogger, text: string) => {
+  const date = new Date(); 
+  const resultString = date.toString() + text;
+
   switch(type) {
   case TypeLogger.Info: {
-    store.dispatch(addLog(logger.info(text) || ''));
+    logger.info(resultString);
+    store.dispatch(addLog(resultString));
     break;
   }
   case TypeLogger.Warn: {
-    store.dispatch(addLog(logger.warn(text) || ''));
+    console.log(type, text);
+    store.dispatch(addLog(resultString));
     break;
   }
   case TypeLogger.Clear: {
@@ -29,7 +38,7 @@ const log = (type: TypeLogger, text: string) => {
     break;
   }
   default: {
-    console.log('Error logger type');
+    checkNever(type);
   }
   }
 };

@@ -7,7 +7,7 @@ import { store } from '../store/store';
 import { getWeekDayNameFromNumber } from '../utils/getWeekDayNameFromNumber';
 import { Time, WeekDay } from './TimerData';
 
-const sender = new Transceiver(new ProtocolDMX());
+const senderDMX = new Transceiver(new ProtocolDMX());
 type Power = 'ON' | 'OFF';
 
 type HandleTimer = (days: WeekDay[], time: Time, groupName: string, power: Power) => void;
@@ -31,6 +31,6 @@ export const handleTimer: HandleTimer = (days, time, groupName, power) => {
 
   if (isWorkDay && isWorkTime) {
     store.dispatch(changeElectricGroupState({[groupName]: data.level}));
-    sender.send(data);
+    senderDMX.send(data);
   }
 };

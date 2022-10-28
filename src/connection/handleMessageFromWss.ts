@@ -5,6 +5,8 @@ import { handleSetTimersEvent } from './handleSetTimersEvent';
 import { handleGetStateEvent } from './handleGetStateEvent';
 import WssEvent from './WssEvent';
 import { handleClearLogEvent } from './handleClearLogEvent';
+import { log, TypeLogger } from '../logger/logger';
+import { checkNever } from '../utils/checkNever';
 
 interface ReceiveData {
   command: WssEvent;
@@ -18,7 +20,7 @@ export const handleMessageFromWss = (wss: webSocket.WebSocket, message: webSocke
     receiveData = JSON.parse(String(message));
   }
   catch (error) {
-    console.error(`Error receive data. Not is JSON: ${String(message)}`);
+    log(TypeLogger.Warn, `Error receive data from wss. Not is JSON: ${String(message)}`);
     return;
   }
 
@@ -43,7 +45,7 @@ export const handleMessageFromWss = (wss: webSocket.WebSocket, message: webSocke
     break;
   }
   default: {
-    console.log(`Receive data not valid: ${String(message)}`);
+    checkNever(event);
   }
   }
 };

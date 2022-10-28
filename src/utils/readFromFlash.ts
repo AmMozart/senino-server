@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 
 import { TimerData } from '../timer/TimerData';
+import { log, TypeLogger } from '../logger/logger';
 
 export function readFromFlash(fileName = '/timers'): TimerData[] {
   let read;
@@ -10,14 +11,14 @@ export function readFromFlash(fileName = '/timers'): TimerData[] {
     read = readFileSync(fileName, 'utf-8');
   }
   catch {
-    console.error(`File '${fileName}' don't read from disk.`);
+    log(TypeLogger.Warn, `File '${fileName}' don't read from disk.`);
   }
   
   try {
     timers = JSON.parse(String(read));
   }
   catch {
-    console.error(`No valid readed data from file '${fileName}'`);
+    log(TypeLogger.Warn, `No valid json readed data from file '${fileName}'`);
   }
   
   return timers;

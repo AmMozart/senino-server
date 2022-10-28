@@ -1,4 +1,5 @@
 import { readFileSync } from 'fs';
+import { log, TypeLogger } from '../logger/logger';
 
 export function readLogFile(fileName = '/logfile'): string[] {
   let read;
@@ -8,7 +9,7 @@ export function readLogFile(fileName = '/logfile'): string[] {
     read = readFileSync(fileName, 'utf-8');
   }
   catch {
-    console.error(`File '${fileName}' don't read from disk.`);
+    log(TypeLogger.Warn, `File '${fileName}' don't read from disk.`);
   }
   
   logs = read && read.split('\n') || [];

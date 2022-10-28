@@ -11,11 +11,10 @@ class Transceiver {
 
   public send(data: SendData) {
     uart.write(this.protocol.getPackage(data));
-    console.log(`send uart data: ${this.protocol.getPackage(data)}`);
   }
 
   public receive(data: string) {
-    console.log(`receive data: ${data}`);
+    // TODO
   }
 }
 

@@ -3,28 +3,26 @@ import { PORT_NAME, BAUD_RATE } from '../config/serialPortConfig';
 import { EventSerialPort } from './EventSerialPort';
 import SerialPortPublisher from './SerialPortPublisher';
 
-const TAG = 'UART';
+const RECONNECT_LOOP = 10_000;
 export let uart = uartInit();
 
 function handlePortOpen(): void {
-  console.log(`${TAG}: port ${uart.path} open, Data rate: ${uart.baudRate}`);
+  // TODO
 }
 
 function handlePortClose(): void {
-  console.log(`${TAG}: port ${uart.path} closed.`);
-  setTimeout(() => uart = uartInit(), 10_000);
+  reconnectUart();
 }
 
-function handlePortError(error: string): void {
-  console.log(`${TAG}: port error: ${error}`);
-  setTimeout(() => uart = uartInit(), 10_000);
+function handlePortError(): void {
+  reconnectUart();
 }
 
 function readPortData(data: string): void {
   SerialPortPublisher.publish(EventSerialPort.Read, data);
 }
 
-function uartInit() {
+function uartInit(): SerialPort {
   const resultUart = new SerialPort({ path: PORT_NAME, baudRate: BAUD_RATE });
 
   resultUart.on('open', handlePortOpen);
@@ -33,4 +31,8 @@ function uartInit() {
   resultUart.on('data', readPortData);
 
   return resultUart;
+}
+
+function reconnectUart(): void {
+  setTimeout(() => uart = uartInit(), RECONNECT_LOOP);
 }
