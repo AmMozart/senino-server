@@ -23,6 +23,11 @@ const startWss = (server: https.Server): expressWs.Instance => {
     transport: 'tcp'
   }));
 
+  appWs.ws('/cam/living_room', proxy({ 
+    url: 'rtsp://admin:Google_360@192.168.1.212:554/RVi/1/1',
+    transport: 'tcp'
+  }));
+
   return wsServer;
 };
 
