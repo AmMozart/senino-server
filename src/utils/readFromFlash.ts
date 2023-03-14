@@ -11,14 +11,18 @@ export function readFromFlash(fileName = '/timers'): TimerData[] {
     read = readFileSync(fileName, 'utf-8');
   }
   catch {
-    log(TypeLogger.Warn, `File '${fileName}' don't read from disk.`);
+    queueMicrotask(() => {
+      log(TypeLogger.Warn, `File '${fileName}' don't read from disk.`);
+    });
   }
   
   try {
     timers = JSON.parse(String(read));
   }
   catch {
-    log(TypeLogger.Warn, `No valid json readed data from file '${fileName}'`);
+    queueMicrotask(() => {
+      log(TypeLogger.Warn, `No valid json readed data from file '${fileName}'`);
+    });
   }
   
   return timers;

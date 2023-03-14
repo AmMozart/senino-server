@@ -10,6 +10,7 @@ class Transceiver {
   }
 
   public send(data: SendData) {
+    console.log('Send: ', data);
     uart.write(this.protocol.getPackage(data));
   }
 

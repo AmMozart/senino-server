@@ -9,7 +9,9 @@ export function readLogFile(fileName = '/logfile'): string[] {
     read = readFileSync(fileName, 'utf-8');
   }
   catch {
-    log(TypeLogger.Warn, `File '${fileName}' don't read from disk.`);
+    queueMicrotask(() => {
+      log(TypeLogger.Warn, `File '${fileName}' don't read from disk.`);
+    });
   }
   
   logs = read && read.split('\n') || [];

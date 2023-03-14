@@ -28,7 +28,7 @@ const log = (type: TypeLogger, text: string) => {
     break;
   }
   case TypeLogger.Warn: {
-    console.log(type, text);
+    logger.warn(resultString);
     store.dispatch(addLog(resultString));
     break;
   }
