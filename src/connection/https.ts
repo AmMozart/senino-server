@@ -3,6 +3,7 @@ import https from 'https';
 import fs from 'fs';
 import { join } from 'path';
 
+import { authRouter } from '../routes/authRoute';
 import { PORT } from '../config/webServerConfig';
 import { getIpAddress } from '../utils/getIpAddress';
 
@@ -13,9 +14,11 @@ export const app = express();
 
 const startHttps = (): https.Server => {
   app.use(express.static(join(__dirname + '../../../../client/build')));
+  app.use(express.json());
+  app.use('/', authRouter);
 
   const server = https.createServer(
-    { 
+    {
       key: privateKey,
       cert: certificate
     }, app);
