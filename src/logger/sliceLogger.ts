@@ -2,8 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '../store/store';
 import { readLogFile } from '../utils/readLogFile';
+import { LOGS_FILE_NAME } from '../config/stateFileName';
 
-const initialState: string[] = readLogFile();
+const initialState: string[] = readLogFile(LOGS_FILE_NAME);
 
 const sliceLogger = createSlice({
   name: 'Logger',

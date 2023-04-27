@@ -1,11 +1,10 @@
 import { readFileSync } from 'fs';
 
-import { TimerData } from '../timer/TimerData';
 import { log, TypeLogger } from '../logger/logger';
 
-export function readFromFlash(fileName = '/timers'): TimerData[] {
+export function readFromFlash(fileName: string): [] {
   let read;
-  let timers: TimerData[] = [];
+  let array: [] = [];
 
   try {
     read = readFileSync(fileName, 'utf-8');
@@ -17,7 +16,7 @@ export function readFromFlash(fileName = '/timers'): TimerData[] {
   }
   
   try {
-    timers = JSON.parse(String(read));
+    array = JSON.parse(String(read));
   }
   catch {
     queueMicrotask(() => {
@@ -25,5 +24,5 @@ export function readFromFlash(fileName = '/timers'): TimerData[] {
     });
   }
   
-  return timers;
+  return array;
 }

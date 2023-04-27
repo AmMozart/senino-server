@@ -3,6 +3,7 @@ import webSocket from 'ws';
 import { handleLoadControlEvent } from './handleLoadControlEvent';
 import { handleSetTimersEvent } from './handleSetTimersEvent';
 import { handleGetStateEvent } from './handleGetStateEvent';
+import { handleSetScriptsEvent } from './handleSetScriptsEvent';
 import WssEvent from './WssEvent';
 import { handleClearLogEvent } from './handleClearLogEvent';
 import { log, TypeLogger } from '../logger/logger';
@@ -42,6 +43,10 @@ export const handleMessageFromWss = (wss: webSocket.WebSocket, message: webSocke
   }
   case WssEvent.ClearLog: {
     handleClearLogEvent();
+    break;
+  }
+  case WssEvent.SetScripts: {
+    handleSetScriptsEvent(payload);
     break;
   }
   default: {

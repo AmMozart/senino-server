@@ -1,11 +1,10 @@
 import {  writeFileSync } from 'fs';
 
-import { TimerData } from '../timer/TimerData';
 import { log, TypeLogger } from '../logger/logger';
 
-export function saveOnFlash(timers: TimerData[], fileName = '/timers'): void {
+export function saveOnFlash(array: any[], fileName: string): void {
   try {
-    writeFileSync(fileName, JSON.stringify(timers));
+    writeFileSync(fileName, JSON.stringify(array));
   }
   catch {
     log(TypeLogger.Warn, `File '${fileName}' don't write on disk.`);

@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { log, TypeLogger } from '../logger/logger';
 
-export function readLogFile(fileName = '/logfile'): string[] {
+export function readLogFile(fileName: string): string[] {
   let read;
   let logs: string[] = [];
 

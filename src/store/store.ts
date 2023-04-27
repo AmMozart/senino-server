@@ -6,6 +6,7 @@ import { wssServer } from '../connection/servers';
 import timerReducer from '../timer/sliceTimer';
 import { loggerMiddleware } from '../logger/loggerMiddleware';
 import loggerReducer from '../logger/sliceLogger';
+import scriptReducer from '../script/scriptSlice';
 
 export const store = configureStore(
   {
@@ -13,6 +14,7 @@ export const store = configureStore(
       electricGroup: electricGroupReducer,
       timers: timerReducer,
       logs: loggerReducer,
+      scripts: scriptReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(loggerMiddleware),

@@ -6,8 +6,9 @@ import { TimerData } from './TimerData';
 import { updateTimers } from '../utils/updateTimers';
 import { saveOnFlash } from '../utils/saveOnFlash';
 import ClockOneMinuteInterval from './ClockOneMinuteInterval';
+import { TIMERS_FILE_NAME } from '../config/stateFileName';
 
-const initialState: TimerData[] = readFromFlash();
+const initialState: TimerData[] = readFromFlash(TIMERS_FILE_NAME);
 
 const sliceTimer = createSlice({
   name: 'Timer',
@@ -15,7 +16,7 @@ const sliceTimer = createSlice({
   reducers: {
     setTimers: (state, action: PayloadAction<TimerData[]>) => {
       updateTimers(ClockOneMinuteInterval, action.payload);
-      saveOnFlash(action.payload);
+      saveOnFlash(action.payload, TIMERS_FILE_NAME);
       
       return action.payload;
     }
