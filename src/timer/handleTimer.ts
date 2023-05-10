@@ -1,13 +1,9 @@
 import { changeElectricGroupState } from '../electricGroup/electricGroupSlice';
-import { ProtocolDMX } from '../transceiver/ProtocolDMX';
-import Transceiver from '../transceiver/Transceiver';
-import { SendData } from '../transceiver/SendData';
-import { loadDMX } from '../config/LoadDMX';
 import { store } from '../store/store';
+import { dmxBus } from '../transceiver/DmxBus';
 import { getWeekDayNameFromNumber } from '../utils/getWeekDayNameFromNumber';
 import { Time, WeekDay } from './TimerData';
 
-const senderDMX = new Transceiver(new ProtocolDMX());
 type Power = 'ON' | 'OFF';
 
 type HandleTimer = (days: WeekDay[], time: Time, groupName: string, power: Power) => void;
@@ -24,13 +20,15 @@ export const handleTimer: HandleTimer = (days, time, groupName, power) => {
   const isWorkTime = time.hour === currentTime.hour &&
     time.minute === currentTime.minute;
 
-  const data: SendData = {
-    channel: loadDMX[groupName],
-    level: power === 'ON' ? 255 : 0,
-  };
+  const level = power === 'ON' ? 255 : 0;
 
   if (isWorkDay && isWorkTime) {
-    store.dispatch(changeElectricGroupState({[groupName]: data.level}));
-    senderDMX.send(data);
+    store.dispatch(changeElectricGroupState({[groupName]: level}));
+
+    if(power === 'ON') {
+      dmxBus.on(groupName);
+    } else {
+      dmxBus.off(groupName);
+    }
   }
 };

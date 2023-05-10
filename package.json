@@ -1,7 +1,16 @@
 {
-  "name": "smart-home-server",
+  "name": "senino-server",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "author": "Sergey Belyaev",
+  "description": "Application that manages all systems in smart home",
+  "keywords": [
+    "smart",
+    "home",
+    "automatic",
+    "system"
+  ],
+  "license": "MIT",
   "main": "index.ts",
   "scripts": {
     "start": "npx ts-node src/index.ts",
@@ -11,8 +20,6 @@
     "test": "jest",
     "test:watch": "jest --watch-all --coverage"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "bcryptjs": "^2.4.3",

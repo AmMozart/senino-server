@@ -6,15 +6,15 @@ import { Protocol } from './Protocol';
 
 class Transceiver {
   public constructor(private protocol: Protocol) {
-    SerialPortPublisher.subscribe(EventSerialPort.Read, this.receive);
+    SerialPortPublisher.subscribe(EventSerialPort.Read, this.receiveFromUART);
   }
 
-  public send(data: SendData) {
+  public sendToUART(data: SendData) {
     console.log('Send: ', data);
     uart.write(this.protocol.getPackage(data));
   }
 
-  public receive(data: string) {
+  public receiveFromUART(data: string) {
     // TODO
   }
 }
