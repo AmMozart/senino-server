@@ -1,4 +1,5 @@
 import { wssServer } from '../connection/servers';
+import { handleHomeWent } from '../script/handleHomeWent';
 import { handlePresenceEffect } from '../script/handlePresenceEffect';
 import { store } from './store';
 
@@ -12,4 +13,5 @@ const sendStateToClients = () => {
 export const handleChangesInStore = () => {
   sendStateToClients();
   handlePresenceEffect();
+  handleHomeWent();
 };
